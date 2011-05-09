@@ -23,6 +23,10 @@ env.webserver = 'apache2' # nginx or apache2 (directory name below /etc!)
 env.dbserver = 'postgresql' # mysql or postgresql
 env.user='lumixadmin'
 
+env.dbuser='lumixdb'
+env.dbname='lumixdb'
+env.dbpassword='luM1Xdb'
+
 if os.name == 'nt':
     env.use_virtualenv = False
 else:
@@ -50,7 +54,7 @@ def localhost(path=DEFAULT_PATH_LOCALDEV, user=DEFAULT_USER_LOCALDEV,
         env.activate = 'source %(virtualenv_path)s/bin/activate' % env
     env.createdb = createdb
 
-def cdnmanager(path=DEFAULT_PATH_SERVER, user=DEFAULT_USER_SERVER, 
+def production(path=DEFAULT_PATH_SERVER, user=DEFAULT_USER_SERVER, 
         host=DEFAULT_HOST_SERVER, createdb=True):
     """ Deploy to a dedicated webserver (can be staging or production) """
     env.hosts = [host] # always deploy to a single host
@@ -103,32 +107,32 @@ def setup():
         # because these may have been created before
         # TODO: test if the user was created before, and if the db exists, instead of ignoring the error
         with settings(warn_only=True):
-            sudo('psql -c "CREATE USER %s WITH NOCREATEDB NOCREATEUSER ENCRYPTED PASSWORD E\'%s\'"' % ('cdnmanager', 'CdnManager'), user='postgres')
-            sudo('psql -c "CREATE DATABASE %s WITH OWNER %s"' % (
-            'cdn', 'cdnmanager'), user='postgres')
+            sudo('psql -c "CREATE USER %(dbuser)s WITH NOCREATEDB NOCREATEUSER ENCRYPTED PASSWORD E\'%(dbpassword)s\'"' % env, user='postgres')
+            sudo('psql -c "CREATE DATABASE %(dbname)s WITH OWNER %(dbuser)s"' % env, user='postgres')
 
 def deploy():
     if env.hosts[0] == 'localhost':
         # create project dir
         if not exists(env.path):
-            sudo('mkdir %s' % env.path,user=env.user)
+            sudo('mkdir %s' % env.path, user=env.user)
 
         if not exists(os.path.join(env.path, 'lumix')):
-            local('cd %(path)s && git clone git@github.com:carribeiro/lumix.git' % env)
+            local('cd %(path)s && git clone git@github.com:carribeiro/%(prj_name)s.git' % env)
         else:
-            local('cd %(path)s && cd vdeli && git pull' % env)
+            local('cd %(path)s && cd %(prj_name)s && git pull' % env)
         
         # create virtualenv
         with cd(env.project_path):
-            sudo('virtualenv .env --no-site-packages',user=env.user)
+            sudo('virtualenv .env --no-site-packages', user=env.user)
         
         # install packages
         with virtualenv():
-            sudo('pip install -r %(project_path)s/cdnmanager/requirements.txt' % env,user=env.user)
-            sudo('pip install django-debug-toolbar' % env,user=env.user)
+            sudo('pip install -r %(project_path)s/requirements.txt' % env, user=env.user)
+            sudo('pip install django-debug-toolbar' % env, user=env.user)
         
-        run('cp %(project_path)s/local_scripts/local_settings.py %(project_path)s/cdnmanager/cdnmanager/cdn/' % env)
-        sudo('mkdir %(project_path)s/cdnmanager/cdnmanager/cdn/uploads' % env,user=env.user)
+        # TODO: don't have these scripts yet, fix it later
+        #run('cp %(project_path)s/local_scripts/local_settings_dev.py %(project_path)s/%(prj_name)s/' % env)
+        #sudo('mkdir %(project_path)s/%(prj_name)s/uploads' % env,user=env.user)
 
     # deploy on a remote system
     else:
@@ -140,17 +144,20 @@ def deploy():
         # the repository locally, and then copy it via rsync. this way we don't need git
         # or a copy of the repo on the server, neither we need deploy keys there.
         with settings(warn_only=True):
-            local('rm -rf /tmp/vdeli')
-            local('mkdir /tmp/vdeli')
-        local('cd /tmp && git clone git@github.com:carribeiro/vdeli.git' % env)
+            local('rm -rf /tmp/%(prj_name)s' % env)
+            local('mkdir /tmp/%(prj_name)s' %env)
+        local('cd /tmp && git clone git@github.com:carribeiro/%(prj_name)s.git' % env)
         sudo('chown %(user)s:%(user)s %(path)s' % env)
         rsync_project(
-                local_dir = '/tmp/vdeli',
+                local_dir = '/tmp/%(prj_name)s' % env,
                 remote_dir = env.path,
                 delete=True,
             )
         local('rm -fr /tmp/%(prj_name)s' % env)
-        sudo('mkdir %(project_path)s/cdnmanager/cdnmanager/cdn/uploads' % env,user=env.user)
+
+        # TODO: don't have these scripts yet, fix it later
+        #run('cp %(project_path)s/local_scripts/local_settings_prod.py %(project_path)s/%(prj_name)s/' % env)
+        #sudo('mkdir %(project_path)s/%(prj_name)s/uploads' % env,user=env.user)
 
 def configure_virtualenv():
         # create virtualenv
@@ -159,17 +166,17 @@ def configure_virtualenv():
         
         # install packages
         with virtualenv():
-            sudo('pip install -r %(project_path)s/cdnmanager/requirements.txt' % env,user=env.user)
+            sudo('pip install -r %(project_path)s/requirements.txt' % env,user=env.user)
 
 def reload_apache():
-    sudo('touch %(project_path)s/cdnmanager/cdnmanager/django.wsgi' % env)
+    sudo('touch %(project_path)s/%(prj_name)s/django.wsgi' % env)
 
 def configure_wsgi_script():
-    sed('%(project_path)s/cdnmanager/cdnmanager/django.wsgi' % env, '_VIRTUALENVPATH_', '%(virtualenv_path)s' % env)
-    sed('%(project_path)s/cdnmanager/cdnmanager/django.wsgi' % env, '_VDELIHOME_', '%(project_path)s' % env)
+    sed('%(project_path)s/%(prj_name)s/django.wsgi' % env, '_VIRTUALENVPATH_', '%(virtualenv_path)s' % env)
+    sed('%(project_path)s/%(prj_name)s/django.wsgi' % env, '_VDELIHOME_', '%(project_path)s' % env)
 
 def set_permissions():
-    sudo('chmod 0777 %(project_path)s/cdnmanager/cdnmanager/cdn/uploads' % env)
+    sudo('chmod 0777 %(project_path)s/%(prj_name)s/uploads' % env)
 
 def update(update_requirements=False):
     with cd(env.project_path):
@@ -178,12 +185,12 @@ def update(update_requirements=False):
         sudo('git pull', user=env.user)
 
     with virtualenv():
-        with cd('%(project_path)s/cdnmanager/cdnmanager/cdn' % env):
+        with cd('%(project_path)s/%(prj_name)s/%(prj_name)s/' % env):
             sudo('./manage.py collectstatic -v0 --noinput', user=env.user)
 
     if update_requirements:
         with virtualenv():
-            sudo('pip install -U -r %(project_path)s/cdnmanager/requirements.txt' % env,user=env.user)
+            sudo('pip install -U -r %(project_path)s/%(prj_name)s/requirements.txt' % env,user=env.user)
 
     configure_wsgi_script()
     set_permissions()
