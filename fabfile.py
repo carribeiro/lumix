@@ -116,7 +116,7 @@ def deploy():
         if not exists(env.path):
             sudo('mkdir %s' % env.path, user=env.user)
 
-        if not exists(os.path.join(env.path, 'lumix')):
+        if not exists(env.project_path):
             local('cd %(path)s && git clone git@github.com:carribeiro/%(prj_name)s.git' % env)
         else:
             local('cd %(path)s && cd %(prj_name)s && git pull' % env)
@@ -127,7 +127,8 @@ def deploy():
         
         # install packages
         with virtualenv():
-            sudo('pip install -r %(project_path)s/requirements.txt' % env, user=env.user)
+            if exists(os.path.join(env.project_path, 'requirements.txt')):
+                sudo('pip install -r %(project_path)s/requirements.txt' % env, user=env.user)
             sudo('pip install django-debug-toolbar' % env, user=env.user)
         
         # TODO: don't have these scripts yet, fix it later
