@@ -186,7 +186,7 @@ def update(update_requirements=False):
         sudo('git pull', user=env.user)
 
     with virtualenv():
-        with cd('%(project_path)s/%(prj_name)s/%(prj_name)s/' % env):
+        with cd('%(project_path)s/%(prj_name)s/' % env):
             sudo('./manage.py collectstatic -v0 --noinput', user=env.user)
 
     if update_requirements:
