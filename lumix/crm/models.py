@@ -3,19 +3,19 @@
 from django.db import models
 
 class Segmento(models.Model):
-	# valores típicos: educação, saúde, governo, etc.
-	nome_segmento = models.CharField(verbose_name='nome do segmento', max_length=30)
+    # valores típicos: educação, saúde, governo, etc.
+    nome_segmento = models.CharField(verbose_name='nome do segmento', max_length=30)
 
 TIPO_RETENCAO_IMPOSTOS = (
-		('S', 'Sempre'), 
-		('N', 'Nunca'), 
-		('E', 'Retém em NFs Estaduais'), 
-		('M', 'Retém em NFs Municipais')
-		)
+    ('S', 'Sempre'), 
+    ('N', 'Nunca'), 
+    ('E', 'Retém em NFs Estaduais'), 
+    ('M', 'Retém em NFs Municipais')
+    )
 
 class Empresa(models.Model):
     empresa = models.CharField(verbose_name='nome da empresa', max_length=30, blank=False, unique=True, db_index=True)
-    porte = models.CharField(verbose_name='porte', max_length=15, choices=('pequeno', 'médio', 'grande'), blank=True, default='')
+    porte = models.CharField(verbose_name='porte', max_length=15, choices=(('P', 'Pequeno'), ('M', 'Médio'), ('G', 'Grande')), blank=True, default='')
     razao_social = models.CharField(verbose_name='razão social', max_length=60, blank=False, unique=True, db_index=True)
     segmento = models.ForeignKey('Segmento', null=True) 
     atividade = models.CharField(verbose_name='atividade', max_length=60, blank=True, default='')
@@ -31,8 +31,8 @@ class Empresa(models.Model):
 
 class Endereco(models.Model):
     cnpj = models.CharField(verbose_name='CNPJ do endereço', max_length=20, blank=False, unique=True, db_index=True)
-	empresa = ForeignKey('Empresa')
-    endereço = models.CharField(verbose_name='endereço', max_length=80, default="")
+    empresa = models.ForeignKey('Empresa')
+    endereco = models.CharField(verbose_name='endereço', max_length=80, default="")
     bairro = models.CharField(verbose_name='bairro', max_length=40, default="")
     cidade = models.CharField(verbose_name='cidade', max_length=40, default="")
     # TODO: verificar lista de UFs
@@ -45,11 +45,17 @@ class Endereco(models.Model):
     # endereço. a inscrição municipal eu já sei que é por endereço.
 
 class Contrato(models.Model):
-	cliente = ForeignKey('Endereco')
+    cliente = models.ForeignKey('Endereco')
 
 class Aditivo(models.Model):
-	empresa = ForeignKey('Empresa')
+    empresa = models.ForeignKey('Empresa')
 
 class Circuito(models.Model):
-	designacao = models.CharField(verbose_name='designação do circuito', max_length=18, blank=False, unique=True, db_index=True)
-	# continua amanhã
+    designacao = models.CharField(verbose_name='designação do circuito', max_length=18, blank=False, unique=True, db_index=True)
+    produto = models.ForeignKey('catalogo.Produto')
+
+class Item(models.Model):
+    designacao = models.CharField(verbose_name='designação do circuito', max_length=18, blank=False, unique=True, db_index=True)
+
+
+    # continua amanhã
