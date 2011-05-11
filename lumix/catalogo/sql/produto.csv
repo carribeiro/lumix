@@ -1,0 +1,17 @@
+produto;esfera;descricao;natureza_nf;cfop_estado;cfop_fora_estado;cnae;cnae_subitem;pis;cofins;iss;icms;inss
+Ativação;Municipal;Prestação de serviços de instalação de cabo de fibra óptica;Prest Serv Engenharia;;;4221-9/0400;7.02;0,65%;3%;2%;;11%
+Connect Flex;Estadual;Prestação de Serviços de Comunicação;Prest Serv Comunicação;5303;6303;;;0,65%;3%;;25%;
+Connect Flex Duo;Estadual;Prestação de Serviços de Comunicação;Prest Serv Comunicação;5303;6303;;;0,65%;3%;;25%;
+Connect Flex Multi;Estadual;Prestação de Serviços de Comunicação;Prest Serv Comunicação;5303;6303;;;0,65%;3%;;25%;
+Data Center;Municipal;Prestação de Serviços de Informática;Prest Serv Informática;;;aaa;;0,65%;3%;5%;;
+EILD;Estadual;Prestação de Serviços de Comunicação de Dados FLEX EILD;Prest Serv Comunicação;5301;6301;;;0,65%;3%;;25%;
+Fibra Apagada;Municipal;Locação de cabo de fibra óptica com assistência técnica e manutenção;Locação de fibra apagada;;;7739-0/0300;3.05;0,65%;3%;5%;;
+Hospedagem;Municipal;Locação de instalações para servidores;Locação de instalações para servidores;;;4221-9/0400;7.02;0,65%;3%;2%;;
+IP Flex;Estadual;Prestação de Serviços de Comunicação;Prest Serv Comunicação;5303;6303;;;0,65%;3%;;25%;
+IP Flex Multi;Estadual;Prestação de Serviços de Comunicação;Prest Serv Comunicação;5303;6303;;;0,65%;3%;;25%;
+Locação HW;Municipal;Locação de equipamentos com assistência técnica e manutenção;Locação de equipamentos com assistência técnica e manutenção;;;7739-0/0300;3.05;0,65%;3%;5%;;
+Mudança de endereço;Municipal;Prestação de serviços de remanejamento de cabo de fibra óptica;Prest Serv Engenharia;;;4221-9/0400;7.02;0,65%;3%;2%;;11%
+Mudança permanente de velocidade;Municipal;Prestação de serviços técnicos para reconfiguração de velocidade;Prest Serv Engenharia;;;4221-9/0400;7.02;0,65%;3%;2%;;11%
+Serviço de Engenharia;Municipal;Prestação de serviços de engenharia;Prest Serv Engenharia;;;4221-9/0400;7.02;0,65%;3%;2%;;11%
+Serviços técnicos;Municipal;Prestação de serviços técnicos;Prest Serv Engenharia;;;4221-9/0400;7.02;0,65%;3%;2%;;11%
+Storage Connect;Municipal;Locação de fibra apagada;Locação de fibra apagada;;;7739-0/0300;3.05;0,65%;3%;5%;;
