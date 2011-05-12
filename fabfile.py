@@ -77,7 +77,7 @@ def setup():
     """
     Prepare server for the project
     """
-
+ 
     sudo('apt-get update')
     sudo('apt-get install gcc python-all-dev libpq-dev git-core -y')
     
@@ -109,6 +109,11 @@ def setup():
         with settings(warn_only=True):
             sudo('psql -c "CREATE USER %(dbuser)s WITH NOCREATEDB NOCREATEUSER ENCRYPTED PASSWORD E\'%(dbpassword)s\'"' % env, user='postgres')
             sudo('psql -c "CREATE DATABASE %(dbname)s WITH OWNER %(dbuser)s"' % env, user='postgres')
+
+def resetdb():
+    with settings(warn_only=True):
+        sudo('psql -c "DROP DATABASE %(dbname)s"' % env, user='postgres')
+        sudo('psql -c "CREATE DATABASE %(dbname)s WITH OWNER %(dbuser)s"' % env, user='postgres')
 
 def deploy():
     if env.hosts[0] == 'localhost':
