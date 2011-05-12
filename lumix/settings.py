@@ -15,7 +15,7 @@ DATABASES = {
         'NAME': 'lumixdb',
         'USER': 'lumixdb',
         'PASSWORD': 'luM1Xdb',
-        'HOST': '',
+        'HOST': 'localhost',
         'PORT': '',
     }
 }
@@ -119,6 +119,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
+    'django_extensions',
     'south',
     'catalogo',
     'crm',

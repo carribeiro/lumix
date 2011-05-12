@@ -6,7 +6,7 @@ import decimal
 IS_PERCENTAGE = re.compile(r'^(-)?[0-9]+(,[0-9]+)?%$')
 IS_DECIMAL = re.compile(r'^(-)?[0-9]+(,[0-9]+)?%$')
 
-def convert_csv_to_sql(model_name, csvfilename, sqlfilename):
+def convert_csv_to_sql(app_name, model_name, csvfilename, sqlfilename):
 
     def convert_field(field):
         if IS_PERCENTAGE.match(field):
@@ -23,20 +23,21 @@ def convert_csv_to_sql(model_name, csvfilename, sqlfilename):
             header = csvfile.readline().strip()
             field_names = ', '.join(header.split(';'))
             for row in csvfile:
-                data = [convert_field(field.strip()) for field in row.split(';')]
-                print >> sqlfile, "INSERT INTO %s (%s) VALUES (%s)" % (model_name, field_names, data)
+                data = ', '.join(["'%s'" % convert_field(field.strip()) for field in row.split(';')])
+                print >> sqlfile, "INSERT INTO %s_%s (%s) VALUES (%s);" % (app_name, model_name, field_names, data)
 
 if __name__ == "__main__":
     # check if it was called with the correct arguments
-    if len(sys.argv) != 2:
-        print "Usage: csv_to_sql <model_name> | <csv_file_name> (where the csv_file_name is model_name+'.csv'>"
+    if len(sys.argv) != 3:
+        print "Usage: csv_to_sql <app_name> <model_name> | <csv_file_name> (where the csv_file_name is model_name+'.csv'>"
         sys.exit(-1)
     # validates arguments
-    csvfilename = sys.argv[1]
+    app_name = sys.argv[1]
+    csvfilename = sys.argv[2]
     basefilename, csv_ext = os.path.splitext(csvfilename)
     basedir, model_name = os.path.split(basefilename)
     if csv_ext == '':
         csvfilename = basefilename + ".csv"
     sqlfilename = basefilename + ".sql"
     # convert the csv file
-    convert_csv_to_sql(model_name, csvfilename, sqlfilename)
+    convert_csv_to_sql(app_name, model_name, csvfilename, sqlfilename)
