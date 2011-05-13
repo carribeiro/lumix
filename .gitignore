@@ -1,3 +1,7 @@
 *.pyc
 *.sublime-project
 .env
+uploads
+static
+lumix/django.wsgi
+*.bak
