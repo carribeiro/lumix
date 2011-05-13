@@ -18,7 +18,7 @@ urlpatterns = patterns('',
     url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout'),
 
-    url(r'^$', 'crm.views.main', name='main_page'),
+    url(r'^$', 'base.views.main', name='main_page'),
     url(r'^nf/$', 'faturamento.views.notas_fiscais', name='notas_fiscais'),
     url(r'^nfestad/$', 'faturamento.views.notas_fiscais_estaduais', name='notas_fiacais_estaduais'),
     url(r'^nfmunic/$', 'faturamento.views.notas_fiscais_municipais', name='notas_fiacais_municipais'),
