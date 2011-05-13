@@ -183,7 +183,7 @@ def configure_wsgi_script():
     sed('%(project_path)s/%(prj_name)s/django.wsgi' % env, '_LUMIXHOME_', '%(project_path)s' % env)
 
 def set_permissions():
-    sudo('chmod 0777 %(project_path)s/%(prj_name)s/uploads' % env)
+    sudo('chmod 0777 %(project_path)s/uploads' % env)
 
 def update(update_requirements=False):
     with cd(env.project_path):
