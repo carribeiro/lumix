@@ -15,9 +15,6 @@ from django.core.paginator import Paginator, EmptyPage, InvalidPage
 
 @login_required
 def main(request):
-
     return render_to_response('main_form.html', {
     #        'main_form': main_form,
     }, context_instance=RequestContext(request))
-
-# Create your views here.

@@ -18,6 +18,38 @@ class ProvisaoFatura(models.Model):
     def __unicode__(self):
         return  u'%s, %s, %d' % (self.contrato, self.circuito, self.valor)
 
+class NotaFiscal(models.Model):
+    numero = models.IntegerField(verbose_name='NF', default=0, null=True)
+    # a mesma NF pode até ter produtos diferentes, mas desde que compartilhem classificação parecida
+    produto_base = models.ForeignKey('catalogo.Produto')
+    endereco_faturamento = models.ForeignKey('crm.Endereco')
+    # depois vamos incluir uma entidade para a duplicata
+    data_pagamento = models.DateField(verbose_name='data pagamento', null=False)
+
+    inicio_fatura = models.DateField(verbose_name='início do período de fatura', null=True)
+    fim_fatura = models.DateField(verbose_name='final do período de fatura', null=True)
+    valor_bruto = models.DecimalField(verbose_name='valor', max_digits=9, decimal_places=2)
+    perc_pis = models.DecimalField(verbose_name='%PIS', max_digits=6, decimal_places=2)
+    perc_cofins = models.DecimalField(verbose_name='%COFINS', max_digits=6, decimal_places=2)
+    perc_iss = models.DecimalField(verbose_name='%ISS', max_digits=6, decimal_places=2)
+    perc_icms = models.DecimalField(verbose_name='%ICMS', max_digits=6, decimal_places=2)
+    val_pis = models.DecimalField(verbose_name='$PIS', max_digits=9, decimal_places=2)
+    val_cofins = models.DecimalField(verbose_name='$COFINS', max_digits=9, decimal_places=2)
+    val_iss = models.DecimalField(verbose_name='$ISS', max_digits=9, decimal_places=2)
+    val_icms = models.DecimalField(verbose_name='$ICMS', max_digits=9, decimal_places=2)
+    perc_ret_pis = models.DecimalField(verbose_name='%PIS', max_digits=6, decimal_places=2)
+    perc_ret_cofins = models.DecimalField(verbose_name='%COFINS', max_digits=6, decimal_places=2)
+    perc_ret_iss = models.DecimalField(verbose_name='%ISS', max_digits=6, decimal_places=2)
+    perc_ret_ir = models.DecimalField(verbose_name='%IR', max_digits=6, decimal_places=2)
+    perc_ret_csll = models.DecimalField(verbose_name='%CSLL', max_digits=6, decimal_places=2)
+    val_ret_pis = models.DecimalField(verbose_name='%PIS', max_digits=9, decimal_places=2)
+    val_ret_cofins = models.DecimalField(verbose_name='%COFINS', max_digits=9, decimal_places=2)
+    val_ret_iss = models.DecimalField(verbose_name='%ISS', max_digits=9, decimal_places=2)
+    val_ret_ir = models.DecimalField(verbose_name='%IR', max_digits=9, decimal_places=2)
+    val_ret_csll = models.DecimalField(verbose_name='%CSLL', max_digits=9, decimal_places=2)
+    valor_liquido = models.DecimalField(verbose_name='valor líquido', max_digits=9, decimal_places=2)
+
+
 class ItemFaturado(models.Model):
     provisao_fatura = models.ForeignKey('faturamento.ProvisaoFatura')
     data_inicial = models.DateField(verbose_name='data inicial', null=True)
@@ -45,7 +77,7 @@ class ItemFaturado(models.Model):
     val_ret_iss = models.DecimalField(verbose_name='%ISS', max_digits=9, decimal_places=2)
     val_ret_ir = models.DecimalField(verbose_name='%IR', max_digits=9, decimal_places=2)
     val_ret_csll = models.DecimalField(verbose_name='%CSLL', max_digits=9, decimal_places=2)
-    valor_bruto = models.DecimalField(verbose_name='valor bruto', max_digits=9, decimal_places=2)
+    valor_liquido = models.DecimalField(verbose_name='valor líquido', max_digits=9, decimal_places=2)
 
     def __unicode__(self):
         return  u'%s, %s' % (self.provisao_fatura.circuito.designacao, self.valor)
