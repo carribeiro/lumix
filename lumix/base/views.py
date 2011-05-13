@@ -5,7 +5,7 @@ import logging
 
 from django.conf import settings
 from django.core import serializers
-from django.contrib.auth import authenticatP, login
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseBadRequest, \
     HttpResponseRedirect
@@ -25,7 +25,3 @@ def user_login(request):
         pass
     else:
         render_to_response('login.html')
-
-@login_required
-def main(request):
-	pass
