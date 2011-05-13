@@ -72,7 +72,7 @@ def calcula_limite_ciclo(ciclo, mes, ano):
     result['Mẽs Corrido'] = ()
 """
 
-function date_dma(strdate):
+def date_dma(strdate):
     import datetime
     datetime.datetime.strptime(strdate, "%d/%m/%Y").strftime('%Y-%m-%d')
 
