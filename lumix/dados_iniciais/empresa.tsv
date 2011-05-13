@@ -1,0 +1,45 @@
+id	empresa	seq_designacao	porte	segmento*	segmento_id	retem_iss	retem_pis	retem_cofins	retem_ir	retem_csll	dispensa_icms	destaque_icms	nf_separada
+1	Unimed	1	-	Saúde	8	S	n	n	n	n	n	y	n
+2	Bonsucesso	2	-	Financeiro	5	S	n	n	n	n	n	n	n
+3	Minerconsult	3	-	Mineração	7	S	n	n	n	n	n	n	n
+4	Pitágoras	4	-	Educação	3	S	n	n	n	n	n	n	n
+5	Belvitur	5	-	Turismo	12	S	n	n	n	n	n	n	n
+6	Itambé	6	-	Alimentação	1	S	S	S	S	S	n	n	n
+7	Axial	7	-	Saúde	8	S	n	n	n	n	n	y	n
+8	CTBC	8	-	Telecomunicações	10	n	n	n	n	n	n	y	n
+9	Alert	9	-	Saúde	8	S	n	n	n	n	n	y	n
+10	TRT	10	-	Governo	6	S	S	S	S	S	n	n	n
+11	Larox	11	-	Indefinido	13	n	n	n	n	n	n	n	n
+12	CPRR	12	-	Indefinido	13	n	n	n	n	n	n	n	n
+13	Montreal	13	-	TI	11	S	n	n	n	n	n	y	n
+14	Dynpro	14	-	Serviços	9	S	n	n	n	n	n	y	n
+15	Hermes Pardini	15	-	Saúde	8	S	S	S	n	n	n	y	n
+16	BMG	16	-	Financeiro	5	S	n	n	n	n	n	y	n
+17	Via Telecom	17	-	Telecomunicações	10	n	n	n	n	n	n	y	n
+18	Minas Máquinas	18	-	Comércio	2	S	n	n	n	n	n	y	n
+19	Net Service	19	-	TI	11	S	S	S	n	n	n	y	n
+20	Superbuy	20	-	Serviços	9	S	n	n	n	n	n	y	n
+21	Sette	21	-	Indefinido	13	n	n	n	n	n	n	n	n
+22	Senai	22	-	Educação	3	S	n	n	n	n	n	n	n
+23	TRE	23	-	Governo	6	S	S	S	S	S	n	n	n
+24	A&C	24	-	Serviços	9	n	n	n	n	n	n	y	y
+25	Quality	25	-	Hotelaria	14	n	n	n	n	n	n	n	n
+26	Banco Rural	26	-	Financeiro	5	S	n	n	n	n	n	y	n
+27	Direcional	27	-	Engenharia	4	S	S	S	n	n	n	y	n
+28	Confrapar	28	-	Financeiro	5	n	n	n	n	n	n	y	n
+29	#29#	29	-	Indefinido	13	n	n	n	n	n	n	n	n
+30	#30#	30	-	Indefinido	13	n	n	n	n	n	n	n	n
+31	Cimcorp	31	-	TI	11	n	S	S	n	S	n	y	n
+32	Global Crossing	32	-	Telecomunicações	10	n	n	n	n	n	y	y	n
+33	Hospital Vila da Serra	33	-	Saúde	8	S	n	n	n	n	n	y	n
+34	Bernoulli	34	-	Educação	3	n	n	n	n	n	n	y	n
+35	Sambatech	35	-	TI	11	n	n	n	n	n	n	n	n
+36	Localiza	36	-	Serviços	9	S	S	S	S	S	n	y	n
+37	Banco Pottencial	37	-	Financeiro	5	S	n	n	n	n	n	y	n
+38	Manoel Bernardes	38	-	Comércio	2	S	n	n	n	n	n	y	n
+39	GVT	39	-	Telecomunicações	10	n	n	n	n	n	n	n	n
+40	#40#	40	-	Indefinido	13	n	n	n	n	n	n	n	n
+41	#41#	41	-	Indefinido	13	n	n	n	n	n	n	n	n
+42	Intelle	42	-	TI	11	n	n	n	n	n	n	n	n
+43	MRV	43	-	Engenharia	4	n	n	n	n	n	n	n	n
+44	Valenet	44	-	Telecomunicações	10	S	S	S	n	n	n	n	n

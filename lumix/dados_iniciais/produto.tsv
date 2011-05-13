@@ -1,0 +1,18 @@
+id	produto	esfera	descricao	natureza_nf	cfop_estado	cfop_fora_estado	cnae	cnae_subitem	pis	cofins	iss	icms	inss
+1	Ativação	M	Prestação de serviços de instalação de cabo de fibra óptica	Prest Serv Engenharia			4221-9/0400	7.02	0,65%	3,00%	2,00%	0,00%	11,00%
+2	Connect Flex	E	Prestação de Serviços de Comunicação	Prest Serv Comunicação	5303	6303			0,65%	3,00%	0,00%	25,00%	0,00%
+3	Connect Flex Duo	E	Prestação de Serviços de Comunicação	Prest Serv Comunicação	5303	6303			0,65%	3,00%	0,00%	25,00%	0,00%
+4	Connect Flex Multi	E	Prestação de Serviços de Comunicação	Prest Serv Comunicação	5303	6303			0,65%	3,00%	0,00%	25,00%	0,00%
+5	Data Center	M	Prestação de Serviços de Informática	Prest Serv Informática					0,65%	3,00%	5,00%	0,00%	0,00%
+6	EILD	E	Prestação de Serviços de Comunicação de Dados FLEX EILD	Prest Serv Comunicação	5301	6301			0,65%	3,00%	0,00%	25,00%	0,00%
+7	Fibra Apagada	M	Locação de cabo de fibra óptica com assistência técnica e manutenção	Locação de fibra apagada			7739-0/0300	3.05	0,65%	3,00%	5,00%	0,00%	0,00%
+8	Hospedagem	M	Locação de instalações para servidores	Locação de instalações para servidores			4221-9/0400	7.02	0,65%	3,00%	2,00%	0,00%	0,00%
+9	IP Flex	E	Prestação de Serviços de Comunicação	Prest Serv Comunicação	5303	6303			0,65%	3,00%	0,00%	25,00%	0,00%
+10	IP Flex Multi	E	Prestação de Serviços de Comunicação	Prest Serv Comunicação	5303	6303			0,65%	3,00%	0,00%	25,00%	0,00%
+11	Locação HW	M	Locação de equipamentos com assistência técnica e manutenção	Locação de equipamentos			7739-0/0300	3.05	0,65%	3,00%	5,00%	0,00%	0,00%
+12	Mudança de endereço	M	Prestação de serviços de remanejamento de cabo de fibra óptica	Prest Serv Engenharia			4221-9/0400	7.02	0,65%	3,00%	2,00%	0,00%	11,00%
+13	Mudança permanente de velocidade	M	Prestação de serviços técnicos para reconfiguração de velocidade	Prest Serv Engenharia			4221-9/0400	7.02	0,65%	3,00%	2,00%	0,00%	11,00%
+14	Serviço de Engenharia	M	Prestação de serviços de engenharia	Prest Serv Engenharia			4221-9/0400	7.02	0,65%	3,00%	2,00%	0,00%	11,00%
+15	Serviços técnicos	M	Prestação de serviços técnicos	Prest Serv Engenharia			4221-9/0400	7.02	0,65%	3,00%	2,00%	0,00%	11,00%
+16	Storage Connect	M	Locação de fibra apagada	Locação de fibra apagada			7739-0/0300	3.05	0,65%	3,00%	5,00%	0,00%	0,00%
+17	Cross Connect	M	Locação de cabo de interconexão para uso em datacenter	Locação de cabo de rede			7739-0/0300	3.05	0,65%	3,00%	5,00%	0,00%	0,00%

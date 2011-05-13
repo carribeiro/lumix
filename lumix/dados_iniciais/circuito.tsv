@@ -1,0 +1,121 @@
+id	designacao	produto*	produto_id	vlan	empresa_id	sequencia
+1	bhe-02-0001-02-001	Fibra Apagada	7	0	1	1
+2	bhe-02-0001-01-002	IP Flex	9	120	1	2
+3	bhe-02-0001-00-003	Fibra Apagada	7	0	1	3
+4	bhe-02-0001-02-004	Fibra Apagada	7	0	1	4
+5	bhe-02-0001-00-005	Fibra Apagada	7	0	1	5
+6	bhe-02-0001-02-005	Fibra Apagada	7	0	1	5
+7	bhe-02-0001-00-006	Fibra Apagada	7	0	1	6
+8	bhe-02-0001-00-007	Fibra Apagada	7	0	1	7
+9	bhe-02-0001-00-008	Fibra Apagada	7	0	1	8
+10	bhe-02-0001-00-009	Fibra Apagada	7	0	1	9
+11	bhe-02-0001-00-010	Fibra Apagada	7	0	1	10
+12	bhe-02-0001-00-011	Fibra Apagada	7	0	1	11
+13	bhe-02-0001-02-013	Fibra Apagada	7	0	1	13
+14	bhe-02-0001-00-014	Fibra Apagada	7	0	1	14
+15	bhe-00-0001-00-015	Fibra Apagada	7	0	1	15
+16	bhe-02-0001-00-016	Fibra Apagada	7	0	1	16
+17	bhe-02-0001-00-017	Fibra Apagada	7	0	1	17
+18	bhe-00-0001-00-018	Fibra Apagada	7	0	1	18
+19	bhe-02-0001-02-019	Fibra Apagada	7	0	1	19
+20	bhe-07-0001-02-020	Fibra Apagada	7	102	1	20
+21	bhe-07-0001-02-021	Fibra Apagada	7	138	1	21
+22	bhe-07-0001-01-022	IP Flex	9	103	1	22
+23	bhe-07-0001-01-022B	IP Flex	9	0	1	22
+24	bhe-07-0001-02-023	Fibra Apagada	7	0	1	23
+25	bhe-00-0002-00-001	Fibra Apagada	7	0	2	1
+26	bhe-03-0003-01-001	Fibra Apagada	7	0	3	1
+27	bhe-03-0003-00-002	Fibra Apagada	7	0	3	2
+28	bhe-03-0003-00-003	Fibra Apagada	7	0	3	3
+29	bhe-00-0003-00-004	Fibra Apagada	7	0	3	4
+30	bhe-00-0004-00-001	Fibra Apagada	7	0	4	1
+31	bhe-00-0005-00-001	Fibra Apagada	7	0	5	1
+32	bhe-01-0006-00-001	Fibra Apagada	7	0	6	1
+33	bhe-07-0007-01-001	Connect Flex	2	0	7	1
+34	bhe-02-0007-03-001	Fibra Apagada	7	108	7	1
+35	bhe-07-0007-01-002	IP Flex	9	106	7	2
+36	bhe-07-0008-02-001	EILD	6	107	8	1
+37	bhe-05-0008-02-002	EILD	6	125	8	2
+38	bhe-06-0008-02-004	EILD	6	133	8	4
+39	bhe-03-0008-02-005	EILD	6	137	8	5
+40	bhe-03-0008-02-006	EILD	6	139	8	6
+41	bhe-05-0008-02-007	EILD	6	142	8	7
+42	bhe-05-0008-02-008	EILD	6	145	8	8
+43	bhe-01-0008-02-009	EILD	6	136	8	9
+44	bhe-06-0008-02-010	EILD	6	160	8	10
+45	bhe-01-0008-02-011	EILD	6	161	8	11
+46	bhe-01-0008-02-012	EILD	6	162	8	12
+47	bhe-01-0008-02-013	EILD	6	0	8	13
+48	bhe-06-0008-02-013	EILD	6	169	8	13
+49	bhe-07-0008-02-014	EILD	6	0	8	14
+50	bhe-05-0008-02-015	EILD	6	0	8	15
+51	bhe-01-0009-01-001	IP Flex	9	101	9	1
+52	bhe-01-0010-00-001	Fibra Apagada	7	0	10	1
+53	bhe-00-0010-00-002	Fibra Apagada	7	0	10	2
+54	bhe-01-0013-00-001	Fibra Apagada	7	0	13	1
+55	bhe-01-0013-00-002	Fibra Apagada	7	0	13	2
+56	bhe-03-0013-01-003	IP Flex	9	165	13	3
+57	bhe-03-0013-02-004	Connect Flex	2	0	13	4
+58	bhe-01-0013-00-005	Fibra Apagada	7	0	13	5
+59	bhe-02-0014-01-001	IP Flex	9	111	14	1
+60	bhe-02-0015-02-001	Connect Flex	2	114	15	1
+61	bhe-02-0015-02-002	Connect Flex	2	115	15	2
+62	bhe-02-0015-02-003	Connect Flex	2	121	15	3
+63	bhe-02-0015-02-004	Connect Flex	2	122	15	4
+64	bhe-02-0015-02-005	Connect Flex	2	123	15	5
+65	bhe-07-0015-02-006	Connect Flex	2	0	15	6
+66	bhe-03-0016-02-001	IP Flex	9	116	16	1
+67	bhe-03-0016-02-002	Connect Flex	2	0	16	2
+68	bhe-03-0016-02-003	Connect Flex	2	126	16	3
+69	bhe-03-0016-02-004	Connect Flex	2	127	16	4
+70	bhe-03-0016-02-005	Connect Flex	2	130	16	5
+71	bhe-03-0016-02-006	Fibra Apagada	7	0	16	6
+72	bhe-03-0016-02-008	Connect Flex	2	132	16	8
+73	bhe-03-0016-01-009	IP Flex	9	158	16	9
+74	bhe-03-0016-02-009	IP Flex	9	0	16	9
+75	bhe-03-0016-02-010	Connect Flex	2	168	16	10
+76	bhe-03-0016-02-011	Connect Flex	2	0	16	11
+77	bhe-05-0017-02-001	Connect Flex	2	117	17	1
+78	bhe-05-0017-01-002	IP Flex	9	141	17	2
+79	bhe-06-0018-01-001	IP Flex	9	118	18	1
+80	bhe-05-0018-01-002	IP Flex	9	143	18	2
+81	bhe-05-0018-01-003	IP Flex	9	144	18	3
+82	bhe-02-0019-02-001	Connect Flex	2	119	19	1
+83	bhe-02-0020-01-001	IP Flex	9	124	20	1
+84	bhe-03-0021-02-001	Connect Flex	2	128	21	1
+85	bhe-06-0021-02-002	Connect Flex	2	129	21	2
+86	bhe-00-0023-00-002	Fibra Apagada	7	0	23	2
+87	bhe-00-0024-00-001	Fibra Apagada	7	0	24	1
+88	bhe-03-0024-02-001	Connect Flex	2	146	24	1
+89	bhe-03-0024-02-002	Connect Flex	2	147	24	2
+90	bhe-03-0024-02-003	Connect Flex	2	148	24	3
+91	bhe-03-0024-02-004	Connect Flex	2	149	24	4
+92	bhe-07-0024-02-005	Connect Flex	2	159	24	5
+93	bhe-07-0024-02-006	Connect Flex	2	163	24	6
+94	bhe-03-0024-02-007	Connect Flex	2	105	24	7
+95	bhe-07-0024-02-008	Connect Flex	2	0	24	8
+96	bhe-01-0025-01-001	IP Flex	9	134	25	1
+97	bhe-07-0026-00-001	Fibra Apagada	7	0	26	1
+98	bhe-03-0026-02-002	Connect Flex	2	0	26	2
+99	bhe-07-0026-02-002	Connect Flex	2	170	26	2
+100	bhe-07-0027-02-001	Connect Flex	2	135	27	1
+101	bhe-07-0027-02-002	Connect Flex	2	154	27	2
+102	bhe-01-0028-01-001	IP Flex	9	140	28	1
+103	bhe-00-0029-00-001	Fibra Apagada	7	0	29	1
+104	bhe-04-0031-03-001	Connect Flex Multi	4	151	31	1
+105	bhe-04-0031-01-002	IP Flex	9	152	31	2
+106	bhe-04-0031-00-003	Fibra Apagada	7	0	31	3
+107	bhe-01-0032-02-001	EILD	6	153	32	1
+108	bhe-07-0032-02-002	EILD	6	150	32	2
+109	bhe-05-0033-01-001	IP Flex	9	155	33	1
+110	bhe-03-0034-01-001	IP Flex	9	156	34	1
+111	bhe-03-0034-02-002	Connect Flex	2	157	34	2
+112	bhe-07-0034-01-003	IP Flex	9	0	34	3
+113	bhe-00-0036-00-001	Fibra Apagada	7	0	36	1
+114	bhe-01-0037-02-001	Connect Flex	2	129	37	1
+115	bhe-01-0037-02-002	Connect Flex	2	0	37	2
+116	bhe-01-0037-01-003	IP Flex	9	0	37	3
+117	bhe-01-0038-02-001	Connect Flex	2	166	38	1
+118	bhe-01-0042-01-001	IP Flex	9	0	42	1
+119	bhe-05-0043-02-001	Connect Flex	2	0	43	1
+120	bhe-01-0044-00-001	Cross Connect	17	0	44	1

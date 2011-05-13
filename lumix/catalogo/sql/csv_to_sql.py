@@ -16,6 +16,9 @@ def convert_csv_to_sql(app_name, model_name, csvfilename, sqlfilename):
             # convert to decimal
             return str(decimal.Decimal(field.replace(',', '.')).quantize(decimal.Decimal('1.00')))
         else:
+            if len(field) >= 2:
+                # retira aspas duplas!
+                field.replace('"','')
             return field
 
     with open(sqlfilename, 'w') as sqlfile:
