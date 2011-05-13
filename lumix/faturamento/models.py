@@ -47,6 +47,9 @@ class ItemFaturado(models.Model):
     val_ret_csll = models.DecimalField(verbose_name='%CSLL', max_digits=9, decimal_places=2)
     valor_bruto = models.DecimalField(verbose_name='valor bruto', max_digits=9, decimal_places=2)
 
+    def __unicode__(self):
+        return  u'%s, %s' % (self.provisao_fatura.circuito.designacao, self.valor)
+
 #========================
 # http://code.activestate.com/recipes/577274-subtract-or-add-a-month-to-a-datetimedate-or-datet/
 
@@ -69,31 +72,35 @@ def calcula_limite_ciclo(ciclo, mes, ano):
     result['Mẽs Corrido'] = ()
 """
 
+function date_dma(strdate):
+    import datetime
+    datetime.datetime.strptime(strdate, "%d/%m/%Y").strftime('%Y-%m-%d')
+
 ciclos_maio = {
     1: {
-        'Mês Corrido': ('01/04/2011', '30/04/2011'),
-        'Mês Fechado Pós': ('01/04/2011', '30/04/2011' ),
-        'Mês Fechado Pré': ('01/05/2011', '31/05/2011'),
+        'Mês Corrido': (date_dma('01/04/2011'),date_dma('30/04/2011')),
+        'Mês Fechado Pós': (date_dma('01/04/2011'),date_dma('30/04/2011')),
+        'Mês Fechado Pré': (date_dma('01/05/2011'),date_dma('31/05/2011')),
     },
     9: {
-        'Mês Corrido': ('09/04/2011', '08/05/2011'),
-        'Mês Fechado Pós': ('01/04/2011', '30/04/2011' ),
-        'Mês Fechado Pré': ('01/05/2011', '31/05/2011'),
+        'Mês Corrido': (date_dma('09/04/2011'),date_dma('08/05/2011')),
+        'Mês Fechado Pós': (date_dma('01/04/2011'),date_dma('30/04/2011')),
+        'Mês Fechado Pré': (date_dma('01/05/2011'),date_dma('31/05/2011')),
     },
     10: {
-        'Mês Corrido': ('10/04/2011', '09/05/2011'),
-        'Mês Fechado Pós': ('01/04/2011', '30/04/2011' ),
-        'Mês Fechado Pré': ('01/05/2011', '31/05/2011'),
+        'Mês Corrido': (date_dma('10/04/2011'),date_dma('09/05/2011')),
+        'Mês Fechado Pós': (date_dma('01/04/2011'),date_dma('30/04/2011')),
+        'Mês Fechado Pré': (date_dma('01/05/2011'),date_dma('31/05/2011')),
     },
     15: {
-        'Mês Corrido': ('15/04/2011', '14/05/2011'),
-        'Mês Fechado Pós': ('01/04/2011', '30/04/2011' ),
-        'Mês Fechado Pré': ('01/05/2011', '31/05/2011'),
+        'Mês Corrido': (date_dma('15/04/2011'),date_dma('14/05/2011')),
+        'Mês Fechado Pós': (date_dma('01/04/2011'),date_dma('30/04/2011')),
+        'Mês Fechado Pré': (date_dma('01/05/2011'),date_dma('31/05/2011')),
     },
     17: {
-        'Mês Corrido': ('17/04/2011', '16/05/2011'),
-        'Mês Fechado Pós': ('01/04/2011', '30/04/2011' ),
-        'Mês Fechado Pré': ('01/05/2011', '31/05/2011'),
+        'Mês Corrido': (date_dma('17/04/2011'),date_dma('16/05/2011')),
+        'Mês Fechado Pós': (date_dma('01/04/2011'),date_dma('30/04/2011')),
+        'Mês Fechado Pré': (date_dma('01/05/2011'),date_dma('31/05/2011')),
     },
 }   
 
