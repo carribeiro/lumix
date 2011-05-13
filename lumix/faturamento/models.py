@@ -16,7 +16,7 @@ class ProvisaoFatura(models.Model):
     ciclo = models.IntegerField(verbose_name='ciclo', default=15, null=True)
 
     def __unicode__(self):
-        return  u'%s, %s, %d' % (self.contrato, self.circuito, valor)
+        return  u'%s, %s, %d' % (self.contrato, self.circuito, self.valor)
 
 class ItemFaturado(models.Model):
     provisao_fatura = models.ForeignKey('faturamento.ProvisaoFatura')
@@ -152,4 +152,3 @@ def calcula_faturamento():
 
         ifat.valor_bruto = ifat.valor - ifat.ret_pis - ifat.ret_cofins - \
             ifat.ret_iss - ifat.ret_ir - ifat.csll
-            
