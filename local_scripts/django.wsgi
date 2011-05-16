@@ -8,7 +8,7 @@ prev_sys_path = list(sys.path)
 # add the site-packages of our virtualenv as a site dir
 site.addsitedir(vepath)
 # add the app's directory to the PYTHONPATH
-sys.path.append('_LUMIXHOME_/lumix')
+sys.path.append('_LUMIXHOME_')
 sys.path.append('_LUMIXHOME_/lumix')
 
 # reorder sys.path so new directories from the addsitedir show up first

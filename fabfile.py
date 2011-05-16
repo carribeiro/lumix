@@ -177,11 +177,16 @@ def reload_apache():
     sudo('touch %(project_path)s/%(prj_name)s/django.wsgi' % env)
 
 def configure_wsgi_script():
+    if not exists('/etc/apache2/sites-available/%(prj_name)s' % env):
+        sudo('cp %(project_path)s/local_scripts/%(prj_name)s /etc/apache2/sites-available/' % env)
+        sudo('a2ensite %(prj_name)s' % env)
     run('cp %(project_path)s/local_scripts/django.wsgi %(project_path)s/%(prj_name)s/' % env)    
     sed('%(project_path)s/%(prj_name)s/django.wsgi' % env, '_VIRTUALENVPATH_', '%(virtualenv_path)s' % env)
     sed('%(project_path)s/%(prj_name)s/django.wsgi' % env, '_LUMIXHOME_', '%(project_path)s' % env)
 
 def set_permissions():
+    if not exists('%(project_path)s/uploads' % env):
+        sudo('mkdir %(project_path)s/uploads' % env)
     sudo('chmod 0777 %(project_path)s/uploads' % env)
 
 def update(update_requirements=False):
