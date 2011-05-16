@@ -106,7 +106,7 @@ def calcula_limite_ciclo(ciclo, mes, ano):
 
 def date_dma(strdate):
     import datetime
-    datetime.datetime.strptime(strdate, "%d/%m/%Y").strftime('%Y-%m-%d')
+    return datetime.datetime.strptime(strdate, "%d/%m/%Y").strftime('%Y-%m-%d')
 
 #tipos_faturamento = {
 #    'Mês Corrido'
