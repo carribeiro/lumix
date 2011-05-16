@@ -14,7 +14,7 @@ from django.shortcuts import render_to_response, RequestContext, \
 from django.core.urlresolvers import reverse
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
 
-from faturamento.models import NotaFiscal
+from faturamento.models import NotaFiscal, ItemFaturado
 
 @login_required
 def notas_fiscais(request):
@@ -55,4 +55,6 @@ def ciclos_faturamento(request):
     from faturamento.models import ciclos_maio
     dados = {}
     dados['ciclos'] = ciclos_maio
+    dados['nf'] = NotaFiscal
+    dados['itemfatura'] = ItemFaturado
     return render_to_response('ciclos_faturamento.html', dados, context_instance=RequestContext(request))

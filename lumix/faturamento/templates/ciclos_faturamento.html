@@ -11,6 +11,12 @@
         {{ tipo_faturamento }}
         </th>
         {% endfor %}
+        <th rowspan="2">
+        Tot NFs
+        </th>
+        <th rowspan="2">
+        Tot Itens
+        </th>
     </tr>
     <tr>
         {% for tipo_faturamento, periodo in ciclos.1.items %}
@@ -35,6 +41,12 @@
         {{ periodo.1 }}
         </td>
         {% endfor %}
+        <td>
+        {{ nf.objects.count }}
+        </td>
+        <td>
+        {{ itemfatura.objects.count }}
+        </td>
     </tr>
 {% endfor %}
 </table>
