@@ -102,7 +102,8 @@ class ItemContrato(models.Model):
     data_final = models.DateField(verbose_name='data final', null=True)
     modalidade = models.CharField(verbose_name='modalidade', max_length=20, default="", blank=True)
     ciclo = models.IntegerField(verbose_name='ciclo', default=15, null=True)
-
+    # TODO: o ciclo não poderia estar aqui, deveria fazer parte do contrato
+    # TODO: será que as ocorrências deveriam estar ligadas a um contrato?
     def __unicode__(self):
         return  u'%s, %s, %s, %s' % \
             (self.endereco_faturamento.empresa.empresa, self.circuito.designacao, self.endereco_faturamento, self.produto)

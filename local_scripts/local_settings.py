@@ -14,17 +14,16 @@ CACHE_BACKEND = 'dummy://'
 
 DATABASES = {
     'default': {
-        'NAME': 'cdn',
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'USER': 'cdnmanager',
-        'PASSWORD': 'CdnManager',
-        'HOST': 'localhost',
+        'NAME': 'lumix.db',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
     },
 }
 
-
 import logging
-logging.basicConfig(filename=rel('log.txt'),
+logging.basicConfig(filename='log.txt', #filename=rel('log.txt'),
                     level=logging.INFO,
                     format='%(asctime)s %(name)-15s %(levelname)-8s %(message)s',
                     datefmt='%Y-%m-%d %H:%M',)

@@ -131,9 +131,9 @@ ciclos_maio = {
         'Mês Fechado Pré': (date_dma('01/05/2011'),date_dma('31/05/2011')),
     },
     15: {
-        'Mês Corrido': (date_dma('15/04/2011'),date_dma('14/05/2011')),
-        'Mês Fechado Pós': (date_dma('01/04/2011'),date_dma('30/04/2011')),
-        'Mês Fechado Pré': (date_dma('01/05/2011'),date_dma('31/05/2011')),
+        'Mês Corrido': (date_dma('15/04/2011'),date_dma('14/05/2011'),date_dma('05/06/2011')),
+        'Mês Fechado Pós': (date_dma('01/04/2011'),date_dma('30/04/2011'),date_dma('05/06/2011')),
+        'Mês Fechado Pré': (date_dma('01/05/2011'),date_dma('31/05/2011'),date_dma('05/06/2011')),
     },
     17: {
         'Mês Corrido': (date_dma('17/04/2011'),date_dma('16/05/2011')),
@@ -144,7 +144,67 @@ ciclos_maio = {
 
 def calcula_faturamento():
     ItemFaturado.objects.all().delete()
+    # TODO: na planilha excel, para facilitar o agrupamento por NF, o dataset original de provisao_fatura era
+    # ordenado por tipo de NF+cnpj, o que já deixava as coisas agrupadas de forma correta.
+
+    # inicializa contador de NFs com o numero da proxima NF a ser criada. 
+    # TODO: isso acelera o processo mas não é threadsafe 
+    if NotaFiscal.objects.count() == 0:
+        proxima_nf = 1
+    else:
+        from django.db.models import Max
+        proxima_nf = NotaFiscal.objects.aggregate.Max('numero')['numero__max'] + 1
+
     for pf in ProvisaoFatura.objects.all():
+        # procura a NF do ciclo para o cliente, e se não achar, cria uma nova NF
+
+        # a NF agrupa produtos do mesmo ciclo, do mesmo endereço, da mesma esfera, e deve ter um produto base compatível
+        # TODO: criar um campo com "grupo-produto" para facilitar a busca de produtos compatíveis
+
+        nf_candidata = list(NotaFiscal.objects.filter(endereco_faturamento=pf.endereco, produto_base__esfera=pf.produto.esfera))
+        # TODO: testar tb a data_pagamento
+        if len(nf.candidata) > 1:
+            # TODO: tratar este erro
+            nf = nf_candidata[0]
+        elif len(nf.candidata) == 1:
+            nf = nf_candidata[0]
+        else:
+            # cria uma nova NF para o produto a faturar
+            from decimal import Decimal
+            # verifica ciclo & calcula datas
+            # TODO: teste simples, coloca todo mundo no dia 15 com mes_fechado_pre
+            inicio_fatura, fim_datura, data_pagamento = ciclos_maio[15]['Mês Fechado Pré']
+            # cria a NF
+            NotaFiscal(
+                numero = proxima_nf,
+                produto_base = pf.produto,
+                endereco_faturamento = pf.endereco,
+                data_pagamento = data_pagamento,
+                inicio_fatura = inicio_fatura,
+                fim_fatura = fim_fatura,
+                valor_bruto = Decimal('0.00'),
+                perc_pis = Decimal('0.00'),
+                perc_cofins = Decimal('0.00'),
+                perc_iss = Decimal('0.00'),
+                perc_icms = Decimal('0.00'),
+                val_pis = Decimal('0.00'),
+                val_cofins = Decimal('0.00'),
+                val_iss = Decimal('0.00'),
+                val_icms = Decimal('0.00'),
+                perc_ret_pis = Decimal('0.00'),
+                perc_ret_cofins = Decimal('0.00'),
+                perc_ret_iss = Decimal('0.00'),
+                perc_ret_ir = Decimal('0.00'),
+                perc_ret_csll = Decimal('0.00'),
+                val_ret_pis = Decimal('0.00'),
+                val_ret_cofins = Decimal('0.00'),
+                val_ret_iss = Decimal('0.00'),
+                val_ret_ir = Decimal('0.00'),
+                val_ret_csll = Decimal('0.00'),
+                valor_liquido = Decimal('0.00'),
+            )
+            proxima_nf += 1
+
         ifat = ItemFaturado(provisao_fatura=pf)
         ifat.save()
         ifat.data_inicial = pf.data_inicial
