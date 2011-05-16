@@ -1,0 +1,29 @@
+<VirtualHost 187.1.90.10:80>
+    ServerAdmin carribeiro@gmail.com
+    ServerName 187.1.90.10
+
+    DocumentRoot /srv/lumix/lumix
+
+    Alias /static /srv/static
+
+    <Directory /srv/static>
+        Order deny,allow
+        Allow from all
+    </Directory>
+
+    WSGIDaemonProcess lumix user=www-data group=www-data threads=5 python-path=/srv/lumix/.env/lib/python2.6/site-packages
+    WSGIProcessGroup lumix
+    WSGIScriptAlias / /srv/lumix/lumix/django.wsgi
+    WSGIPassAuthorization On
+
+    <Directory /srv/lumix/lumix>
+        Order deny,allow
+        Allow from all
+    </Directory>
+
+    ErrorLog /var/log/apache2/lumix-error.log
+    LogLevel info
+    CustomLog /var/log/apache2/lumix-access.log combined
+
+</VirtualHost>
+
