@@ -37,3 +37,23 @@ def nota_fiscal(request, num_nf):
         return render_to_response('nota_fiscal_estado.html', {'nf': nf}, context_instance=RequestContext(request))
     else:
         return render_to_response('nota_fiscal_erro.html', {'nf': nf}, context_instance=RequestContext(request))
+
+@login_required
+def ciclos_faturamento(request):
+ciclos_maio = {
+    1: {
+        'Mês Corrido': (date_dma('01/04/2011'),date_dma('30/04/2011')),
+        'Mês Fechado Pós': (date_dma('01/04/2011'),date_dma('30/04/2011')),
+        'Mês Fechado Pré': (date_dma('01/05/2011'),date_dma('31/05/2011')),
+    },
+    9: {
+        'Mês Corrido': (date_dma('09/04/2011'),date_dma('08/05/2011')),
+        'Mês Fechado Pós': (date_dma('01/04/2011'),date_dma('30/04/2011')),
+        'Mês Fechado Pré': (date_dma('01/05/2011'),date_dma('31/05/2011')),
+    },
+
+
+    from faturamento.models import ciclos_maio
+    dados = {}
+    dados['ciclos'] = ciclos_maio
+    return render_to_response('ciclos_faturamento.html', dados, context_instance=RequestContext(request))

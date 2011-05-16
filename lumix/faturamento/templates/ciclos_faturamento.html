@@ -1,0 +1,41 @@
+{% extends "baseapp.html" %}
+
+{% block baseapp %}
+<table>
+    <th>
+        <td rowspan="2">
+        Ciclo
+        </td>
+        {% for tipo_faturamento, periodo in ciclos.1.items %}
+        <td colspan="2">
+        tipo_faturamento
+        </td>
+        {% endfor %}
+    </th>
+    <th>
+        {% for tipo_faturamento, periodo in ciclos.1.items %}
+        <td>
+        Dt Início
+        </td>
+        <td>
+        Dt Final
+        </td>
+        {% endfor %}
+    </th>
+{% for num_ciclo, ciclo in ciclos.items %}
+    <tr>
+        <td>
+        {{ num_ciclo }}
+        </td>
+        {% for tipo_faturamento, periodo in ciclo.items %}
+        <td>
+        {{ periodo.0 }}
+        </td>
+        <td>
+        {{ periodo.1 }}
+        </td>
+        {% endfor %}
+    </tr>
+</table>
+{% endfor %}
+{% endblock %}

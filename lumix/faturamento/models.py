@@ -108,6 +108,12 @@ def date_dma(strdate):
     import datetime
     datetime.datetime.strptime(strdate, "%d/%m/%Y").strftime('%Y-%m-%d')
 
+#tipos_faturamento = {
+#    'Mês Corrido'
+#    'Mês Fechado Pós'
+#    'Mês Fechado Pré'
+#}
+
 ciclos_maio = {
     1: {
         'Mês Corrido': (date_dma('01/04/2011'),date_dma('30/04/2011')),
