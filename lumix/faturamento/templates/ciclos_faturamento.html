@@ -2,26 +2,26 @@
 
 {% block baseapp %}
 <table>
-    <th>
-        <td rowspan="2">
+    <tr>
+        <th rowspan="2">
         Ciclo
-        </td>
+        </th>
         {% for tipo_faturamento, periodo in ciclos.1.items %}
-        <td colspan="2">
+        <th colspan="2">
         tipo_faturamento
-        </td>
+        </th>
         {% endfor %}
-    </th>
-    <th>
+    </tr>
+    <tr>
         {% for tipo_faturamento, periodo in ciclos.1.items %}
-        <td>
+        <th>
         Dt Início
-        </td>
-        <td>
+        </th>
+        <th>
         Dt Final
-        </td>
+        </th>
         {% endfor %}
-    </th>
+    </tr>
 {% for num_ciclo, ciclo in ciclos.items %}
     <tr>
         <td>
