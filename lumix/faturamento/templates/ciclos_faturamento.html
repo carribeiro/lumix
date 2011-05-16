@@ -29,13 +29,13 @@
         </td>
         {% for tipo_faturamento, periodo in ciclo.items %}
         <td>
-        {{ periodo.0 }}
+        {{ periodo }}
         </td>
         <td>
         {{ periodo.1 }}
         </td>
         {% endfor %}
     </tr>
-</table>
 {% endfor %}
+</table>
 {% endblock %}
