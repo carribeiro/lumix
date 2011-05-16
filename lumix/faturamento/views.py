@@ -40,18 +40,17 @@ def nota_fiscal(request, num_nf):
 
 @login_required
 def ciclos_faturamento(request):
-ciclos_maio = {
-    1: {
-        'Mês Corrido': (date_dma('01/04/2011'),date_dma('30/04/2011')),
-        'Mês Fechado Pós': (date_dma('01/04/2011'),date_dma('30/04/2011')),
-        'Mês Fechado Pré': (date_dma('01/05/2011'),date_dma('31/05/2011')),
-    },
-    9: {
-        'Mês Corrido': (date_dma('09/04/2011'),date_dma('08/05/2011')),
-        'Mês Fechado Pós': (date_dma('01/04/2011'),date_dma('30/04/2011')),
-        'Mês Fechado Pré': (date_dma('01/05/2011'),date_dma('31/05/2011')),
-    },
-
+    # ciclos_maio = {
+    #     1: {
+    #         'Mês Corrido': (date_dma('01/04/2011'),date_dma('30/04/2011')),
+    #         'Mês Fechado Pós': (date_dma('01/04/2011'),date_dma('30/04/2011')),
+    #         'Mês Fechado Pré': (date_dma('01/05/2011'),date_dma('31/05/2011')),
+    #     },
+    #     9: {
+    #         'Mês Corrido': (date_dma('09/04/2011'),date_dma('08/05/2011')),
+    #         'Mês Fechado Pós': (date_dma('01/04/2011'),date_dma('30/04/2011')),
+    #         'Mês Fechado Pré': (date_dma('01/05/2011'),date_dma('31/05/2011')),
+    #     },
 
     from faturamento.models import ciclos_maio
     dados = {}
