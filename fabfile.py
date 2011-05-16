@@ -99,6 +99,7 @@ def setup():
         else:
             sudo('apt-get install -y apache2-mpm-worker apache2-utils') # apache2-threaded
             sudo('apt-get install -y libapache2-mod-wsgi') # outdated on hardy!
+            sudo('a2enmod wsgi')
 
     if env.createdb:
         if not exists('/etc/postgresql',use_sudo=True):
@@ -145,21 +146,19 @@ def deploy():
         # create project dir
         if not exists(env.path):
             sudo('mkdir %s' % env.path,user=env.user)
+            sudo('chown %(user)s:%(user)s %(path)s' % env)
     
-        # checks the project locally (on the computer that's running fabric), checks the
-        # the repository locally, and then copy it via rsync. this way we don't need git
-        # or a copy of the repo on the server, neither we need deploy keys there.
-        with settings(warn_only=True):
-            local('rm -rf /tmp/%(prj_name)s' % env)
-            local('mkdir /tmp/%(prj_name)s' %env)
-        local('cd /tmp && git clone git@github.com:carribeiro/%(prj_name)s.git' % env)
-        sudo('chown %(user)s:%(user)s %(path)s' % env)
-        rsync_project(
-                local_dir = '/tmp/%(prj_name)s' % env,
-                remote_dir = env.path,
-                delete=True,
-            )
-        local('rm -fr /tmp/%(prj_name)s' % env)
+        sudo('cd %(path)s && git clone git@github.com:carribeiro/%(prj_name)s.git' % env, user=env.user)
+
+        # create virtualenv
+        with cd(env.project_path):
+            sudo('virtualenv .env --no-site-packages', user=env.user)
+        
+        # install packages
+        with virtualenv():
+            sudo('pip install -r %(project_path)s/requirements.txt' % env, user=env.user)
+            with cd('%(project_path)s/%(prj_name)s/' % env):
+                sudo('./manage.py collectstatic -v0 --noinput', user=env.user)
 
         # TODO: don't have these scripts yet, fix it later
         #run('cp %(project_path)s/local_scripts/local_settings_prod.py %(project_path)s/%(prj_name)s/' % env)
