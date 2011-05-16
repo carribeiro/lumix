@@ -8,10 +8,12 @@
 #userinfo ul li a { text-decoration: none; padding: .2em 1em; }
 
 #header-logo img {
-    padding-bottom: 4px;
+    padding-bottom: 0px;
+    margin-top:-15px;
+    margin-bottom:-20px;
 }
 
 .header-title {
-    font-size: 1.2em;
+    font-size: 2em;
     vertical-align: text-bottom;
 }
