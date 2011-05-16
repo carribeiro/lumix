@@ -27,11 +27,6 @@ env.dbuser='lumixdb'
 env.dbname='lumixdb'
 env.dbpassword='luM1Xdb'
 
-if os.name == 'nt':
-    env.use_virtualenv = False
-else:
-    env.use_virtualenv = True
-
 # environments
 #
 # the project can be deployed on two kinds of environment: the localhost is 
@@ -49,6 +44,10 @@ def localhost(path=DEFAULT_PATH_LOCALDEV, user=DEFAULT_USER_LOCALDEV,
                            # check whether this opens a security hole or not, 
                            # depending on what is in the env dictionary
     env.project_path = '%(path)s/%(prj_name)s' % env
+    if (os.name == 'nt'):
+        env.use_virtualenv = False
+    else:
+        env.use_virtualenv = True
     if env.use_virtualenv:
         env.virtualenv_path = '%(project_path)s/.env' % env
         env.activate = 'source %(virtualenv_path)s/bin/activate' % env
@@ -62,6 +61,7 @@ def production(path=DEFAULT_PATH_SERVER, user=DEFAULT_USER_SERVER,
     env.path = path # do not perform path substitution on the server.
                     # it's not really needed and it is safer this way.
     env.project_path = '%(path)s/%(prj_name)s' % env
+    env.use_virtualenv = True
     if env.use_virtualenv:
         env.virtualenv_path = '%(project_path)s/.env' % env
         env.activate = 'source %(virtualenv_path)s/bin/activate' % env
@@ -69,7 +69,7 @@ def production(path=DEFAULT_PATH_SERVER, user=DEFAULT_USER_SERVER,
 
 @_contextmanager
 def virtualenv():
-    with cd(env.path):
+    with cd(env.project_path):
         with prefix(env.activate):
             yield
 
