@@ -30,10 +30,10 @@ def notas_fiscais_municipais(request):
 
 @login_required
 def nota_fiscal(request, num_nf):
-	nf = NotaFiscal.objects.get(num_nf)
-	if nf.produto_base.esfera == "M":
-    	return render_to_response('nota_fiscal_estado.html', {'nf': nf}, context_instance=RequestContext(request))
-	elif nf.produto_base.esfera == "M":
-    	return render_to_response('nota_fiscal_estado.html', {'nf': nf}, context_instance=RequestContext(request))
-	else:
-    	return render_to_response('nota_fiscal_erro.html', {'nf': nf}, context_instance=RequestContext(request))
+    nf = NotaFiscal.objects.get(num_nf)
+    if nf.produto_base.esfera == "M":
+        return render_to_response('nota_fiscal_estado.html', {'nf': nf}, context_instance=RequestContext(request))
+    elif nf.produto_base.esfera == "M":
+        return render_to_response('nota_fiscal_estado.html', {'nf': nf}, context_instance=RequestContext(request))
+    else:
+        return render_to_response('nota_fiscal_erro.html', {'nf': nf}, context_instance=RequestContext(request))
