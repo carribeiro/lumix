@@ -4,3 +4,4 @@
 uploads
 lumix/django.wsgi
 *.bak
+lumix.db
