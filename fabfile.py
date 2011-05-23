@@ -190,7 +190,9 @@ def set_permissions():
     sudo('chmod 0777 %(project_path)s/uploads' % env)
 
 def update(update_requirements=False):
-    sudo('service apache2 stop')
+    if env.hosts[0] != 'localhost':
+        sudo('service apache2 stop')
+        
     with cd(env.project_path):
         # checkout changes
         sudo('git checkout .', user=env.user)
@@ -210,5 +212,6 @@ def update(update_requirements=False):
             sudo('./manage.py migrate --no-initial-data', user=env.user)
 
     set_permissions()
-    reload_apache()
-    sudo('service apache2 start')
+    if env.hosts[0] != 'localhost':
+        reload_apache()
+        sudo('service apache2 start')
