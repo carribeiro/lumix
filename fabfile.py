@@ -192,7 +192,7 @@ def set_permissions():
 def update(update_requirements=False):
     if env.hosts[0] != 'localhost':
         sudo('service apache2 stop')
-        
+
     with cd(env.project_path):
         # checkout changes
         sudo('git checkout .', user=env.user)
@@ -206,7 +206,9 @@ def update(update_requirements=False):
         with virtualenv():
             sudo('pip install -U -r %(project_path)s/requirements.txt' % env,user=env.user)
 
-    configure_wsgi_script()
+    if env.hosts[0] != 'localhost':
+        configure_wsgi_script()
+        
     with virtualenv():
         with cd('%(project_path)s/%(prj_name)s/' % env):
             sudo('./manage.py migrate --no-initial-data', user=env.user)
