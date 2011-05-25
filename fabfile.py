@@ -115,6 +115,16 @@ def resetdb():
     with settings(warn_only=True):
         sudo('psql -c "DROP DATABASE %(dbname)s"' % env, user='postgres')
         sudo('psql -c "CREATE DATABASE %(dbname)s WITH OWNER %(dbuser)s"' % env, user='postgres')
+    with virtualenv():
+        with cd('%(project_path)s/%(prj_name)s/' % env):
+            sudo('./manage.py syncdb --noinput', user=env.user)
+            sudo('./manage.py createsuperuser --username=telbrax --email=cribeiro@telbrax.com.br', user=env.user)
+            sudo('./manage.py migrate --no-initial-data', user=env.user)
+            # cria os arquivos na ordem certa!
+            sudo('cat catalogo/sql/produto.sql '+
+                 'crm/sql/segmento.sql crm/sql/empresa.sql crm/sql/endereco.sql '+
+                 'crm/sql/circuito.sql crm/sql/contrato.sql crm/sql/itemcontrato.sql '+
+                 'faturamento/sql/provisaofatura.sql | python manage.py dbshell')
 
 def deploy():
     if env.hosts[0] == 'localhost':
@@ -208,7 +218,7 @@ def update(update_requirements=False):
 
     if env.hosts[0] != 'localhost':
         configure_wsgi_script()
-        
+
     with virtualenv():
         with cd('%(project_path)s/%(prj_name)s/' % env):
             sudo('./manage.py migrate --no-initial-data', user=env.user)
