@@ -107,6 +107,8 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     '/srv/lumix/lumix/base/templates',
+    '/srv/lumix/lumix/catalogo/templates',
+    '/srv/lumix/lumix/crm/templates',
     '/srv/lumix/lumix/faturamento/templates',
 )
 
