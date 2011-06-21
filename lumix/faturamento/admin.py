@@ -1,3 +1,5 @@
+#coding=utf8
+
 from faturamento.models import DataCalendario, CicloFaturamentoDefault, \
                                CicloFaturamento, ProvisaoFatura, LoteFaturamento, \
                                NotaFiscal, ItemFaturado, Duplicata
