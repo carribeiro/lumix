@@ -1,3 +1,5 @@
+#coding=utf8
+
 from crm.models import Segmento, Empresa, Endereco, Circuito, Contrato, ItemContrato
 from django.contrib import admin
 
