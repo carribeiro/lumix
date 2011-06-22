@@ -1,30 +1,39 @@
-import os
-import logging
+#coding: utf-8
 
-from django.conf import settings
-from django.core import serializers
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseBadRequest, \
-    HttpResponseRedirect
-from django.shortcuts import render_to_response, RequestContext, \
-    get_object_or_404
-from django.core.urlresolvers import reverse
-from django.core.paginator import Paginator, EmptyPage, InvalidPage
-
-@login_required
-def cliente(request):
-    return render_to_response('cliente.html', {
-    #        'main_form': main_form,
-    }, context_instance=RequestContext(request))
-
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from crm.models import Empresa
+from django.forms import ModelForm
 
-class CustomerListView(ListView):
-    template_name = 'empresa_list.html'
+class FormEmpresa(ModelForm):
+    class Meta:
+        Model = Empresa
+
+class ListViewEmpresas(ListView):
+    template_name = 'listview_empresa.html'
     model = Empresa
     context_object_name = "empresas"
-    paginate_by = 10
+    paginate_by = 20
+
+class DetailViewEmpresa(DetailView):
+    template_name = 'detailview_empresa.html'
+    model = Empresa
+    context_object_name = "empresa"
+
+class CreateViewEmpresa(CreateView):
+    template_name = 'createview_empresa.html'
+    model = Empresa
+    context_object_name = "empresa"
+    model_class = FormEmpresa
+    success_url = ''
+    initial = {'empresa': '*teste*'}
+
+class UpdateViewEmpresa(UpdateView):
+    template_name = 'updateview_empresa.html'
+    model = Empresa
+    context_object_name = "empresa"
+    form_class = FormEmpresa
+    success_url = ''
+    initial = {'empresa': '*teste*'}
+
 
 
