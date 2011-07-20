@@ -16,6 +16,10 @@ TIPO_RETENCAO_IMPOSTOS = (
     ('M', 'NF Município'), #'Retém em NFs Municipais')
     )
 
+class EmpresaManager(models.Manager):
+    def get_query_set(self):
+        return super(EmpresaManager, self).get_query_set().annotate(num_circuitos=models.Count('circuito')).annotate(num_enderecos=models.Count('endereco'))
+
 class Empresa(models.Model):
     empresa = models.CharField(verbose_name='nome da empresa', max_length=30, blank=False, unique=True, db_index=True)
     seq_designacao = models.IntegerField(verbose_name='sequência de designação', unique=True, null=True, db_index=True)
@@ -33,17 +37,23 @@ class Empresa(models.Model):
     destaque_icms = models.BooleanField(verbose_name='destacar ICMS')
     nf_separada = models.BooleanField(verbose_name='emitir NF separada')
 
-    def num_circuitos(self):
-        return self.circuito_set.count()
-    num_circuitos.short_description = '#Circuitos'
+    objects = EmpresaManager()
 
-    def num_enderecos(self):
-        return self.endereco_set.count()
-    num_enderecos.short_description = '#Endereços'
+    #def num_circuitos(self):
+    #    return self.circuito__count
+    #num_circuitos.short_description = '#Circuitos'
+
+    #def num_enderecos(self):
+    #    return self.circuito__count
+    #num_enderecos.short_description = '#Endereços'
 
     def __unicode__(self):
-        return  u'%s: #circuitos:%d, #endereços:%d' % \
-            (self.empresa, self.num_circuitos(), self.num_enderecos())
+    # TODO: não está funcionando, deveria funcionar... os campos foram agregados via annotation 
+    # eles aparentemente são criados, no acesso direto eles funcionam, mas nos acessos
+    # indiretos (via joins) não entram.
+    #    return  u'%s: #circuitos:%d, #endereços:%d' % \
+    #        (self.empresa, self.num_circuitos(), self.num_enderecos())
+        return  u'%s' % self.empresa
 
 class Endereco(models.Model):
     cnpj = models.CharField(verbose_name='CNPJ do endereço', max_length=20, blank=False, unique=True, db_index=True)

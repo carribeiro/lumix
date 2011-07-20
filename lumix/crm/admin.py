@@ -1,3 +1,5 @@
+#coding=utf8
+
 from crm.models import Segmento, Empresa, Endereco, Circuito, Contrato, ItemContrato
 from django.contrib import admin
 
@@ -7,7 +9,9 @@ class SegmentoAdmin(admin.ModelAdmin):
     ordering = ('segmento', )
 
 class EmpresaAdmin(admin.ModelAdmin):
-    list_display = ('empresa', 'num_circuitos', 'seq_designacao', 'porte', 'segmento', 'retem_iss', 'retem_pis', 'retem_cofins', 'retem_ir', 'retem_csll', 'dispensa_icms', 'destaque_icms')
+    # estava gerando excesso de queries para agregação um por um em num_circuitos
+    #list_display = ('empresa', 'num_circuitos', 'seq_designacao', 'porte', 'segmento', 'retem_iss', 'retem_pis', 'retem_cofins', 'retem_ir', 'retem_csll', 'dispensa_icms', 'destaque_icms')
+    list_display = ('empresa', 'seq_designacao', 'porte', 'segmento', 'retem_iss', 'retem_pis', 'retem_cofins', 'retem_ir', 'retem_csll', 'dispensa_icms', 'destaque_icms')
     list_editable = ('porte', 'segmento', 'retem_iss', 'retem_pis', 'retem_cofins', 'retem_ir', 'retem_csll', 'dispensa_icms', 'destaque_icms')
     ordering = ('empresa', )
     search_fields = ['empresa']

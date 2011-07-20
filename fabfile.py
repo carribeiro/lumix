@@ -115,6 +115,16 @@ def resetdb():
     with settings(warn_only=True):
         sudo('psql -c "DROP DATABASE %(dbname)s"' % env, user='postgres')
         sudo('psql -c "CREATE DATABASE %(dbname)s WITH OWNER %(dbuser)s"' % env, user='postgres')
+    with virtualenv():
+        with cd('%(project_path)s/%(prj_name)s/' % env):
+            sudo('./manage.py syncdb --noinput', user=env.user)
+            sudo('./manage.py createsuperuser --username=telbrax --email=cribeiro@telbrax.com.br', user=env.user)
+            sudo('./manage.py migrate --no-initial-data', user=env.user)
+            # cria os arquivos na ordem certa!
+            sudo('cat catalogo/sql/produto.sql '+
+                 'crm/sql/segmento.sql crm/sql/empresa.sql crm/sql/endereco.sql '+
+                 'crm/sql/circuito.sql crm/sql/contrato.sql crm/sql/itemcontrato.sql '+
+                 'faturamento/sql/provisaofatura.sql | python manage.py dbshell')
 
 def deploy():
     if env.hosts[0] == 'localhost':
@@ -190,7 +200,9 @@ def set_permissions():
     sudo('chmod 0777 %(project_path)s/uploads' % env)
 
 def update(update_requirements=False):
-    sudo('service apache2 stop')
+    if env.hosts[0] != 'localhost':
+        sudo('service apache2 stop')
+
     with cd(env.project_path):
         # checkout changes
         sudo('git checkout .', user=env.user)
@@ -204,11 +216,14 @@ def update(update_requirements=False):
         with virtualenv():
             sudo('pip install -U -r %(project_path)s/requirements.txt' % env,user=env.user)
 
-    configure_wsgi_script()
+    if env.hosts[0] != 'localhost':
+        configure_wsgi_script()
+
     with virtualenv():
         with cd('%(project_path)s/%(prj_name)s/' % env):
             sudo('./manage.py migrate --no-initial-data', user=env.user)
 
     set_permissions()
-    reload_apache()
-    sudo('service apache2 start')
+    if env.hosts[0] != 'localhost':
+        reload_apache()
+        sudo('service apache2 start')

@@ -1,0 +1,23 @@
+{% extends "baseapp.html" %}
+
+{% block baseapp %}
+    <h2>Empresas</h2>
+    <ul>
+        {% for empresa in empresas %}
+            <li>{{ empresa.empresa }}</li>
+        {% endfor %}
+    </ul>
+    <div class="pagination">
+        <span class="step-links">
+            {% if empresas.has_previous %}
+                <a href="?page={{ object_list.previous_page_number }}">Anterior</a>
+            {% endif %}
+            <span class="current">
+                Pág {{ empresas.number }} de {{ empresas.paginator.num_pages }}.
+            </span>
+            {% if empresas.has_next %}
+                <a href="?page={{ object_list.next_page_number }}">Próxima</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock %}

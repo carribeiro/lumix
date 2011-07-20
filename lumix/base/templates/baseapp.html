@@ -2,13 +2,13 @@
 
 {% block content %}
 <div class="container">
-    <div id="header-logo" class="span-16">
+    <div id="header-logo" class="span-9">
         <a href="/"><img src="{{ STATIC_URL }}images/telbrax-medium.png"></a>
         <span class="header-title">
         <b>Lumix</b>
         </span>
     </div>
-    <div id="header-user" class="span-8 last">
+    <div id="header-user" class="span-15 last">
         {% if request.user.is_authenticated %}
             <div id="userinfo" style="text-align:right">
                 <a href="/accounts/{{ request.user.username }}">{{ request.user.username }}</a> |
@@ -21,6 +21,17 @@
             </div>
         {% endif %}
     </div>
+    {% comment %}
+    TODO: lista de modulos estatica, deve ser feita dinamicamente depois
+    TODO: URLs tem que referenciar a url base correta
+    {% endcomment %}
+    <a href="/clientes/">Clientes</a> |
+    <a href="/contratos/">Contratos</a> |
+    <a href="/catalogos/">Catálogo</a> |
+    <a href="/faturamento/">Faturamento</a> |
+    <a href="/viabilidades/">Viabilidades</a> |
+    <a href="/projespeciais/">Projetos Especiais</a> |
+    <a href="/ordensserviço/">OSs</a>
     <hr>
     <div id="main" class="span-24">
     {% block baseapp %}
